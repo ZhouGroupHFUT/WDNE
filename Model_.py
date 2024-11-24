@@ -306,8 +306,8 @@ class GraphEModel(nn.Module):
             print("Epoch : ", epoch_globaly, "/", tot_epochs, "\tLoss : ", loss_mean_epoch, "\tlr net: ", self.optimizatior['net'].param_groups[0]['lr'], "\tlr att: ", self.optimizatior['att'].param_groups[0]['lr'])
             outputs[epoch] = node_4batch
 
-        self.set_embedding(encoder_out=outputs, last_epoch= epochs_time - 1, save=True, path=path_embedding, phases=['att', 'net'])
-        return {"output": outputs, "losses": losses, "saved_embedding": True}
+        self.set_embedding(encoder_out=outputs, last_epoch=epochs_time - 1, save=False, path=path_embedding, phases=['att', 'net'])
+        return {"output": outputs, "losses": losses, "saved_embedding": False}
 
     def models_training_2phased(self, phases_list, datagenerator, epochs, path_embedding="/content/", loss_verbose=False):
         check_phase = Util_class.same_key_in_dict(phases_list, ['net', 'att'])
@@ -429,8 +429,8 @@ class GraphEModel(nn.Module):
                 losses[phase].append(loss_mean_epoch)
                 print("Phase : ", phase, "\tEpoch : ", epoch_globaly, "/", tot_epochs, "\tLoss : ", loss_mean_epoch, "\tlr net: ", self.optimizatior['net'].param_groups[0]['lr'], "\tlr att: ", self.optimizatior['att'].param_groups[0]['lr'])
             outputs[phase] = node_4batch
-            self.set_embedding(encoder_out=outputs, last_epoch=phase, save=True, path=path_embedding, phases=[phase])
-        return {"output": outputs, "losses": losses, "saved_embedding": True}
+            self.set_embedding(encoder_out=outputs, last_epoch=phase, save=False, path=path_embedding, phases=[phase])
+        return {"output": outputs, "losses": losses, "saved_embedding": False}
 
     def models_training_multiAttr(self, phases_list, datagenerator, epochs, path_embedding="/content/", loss_verbose=False):
         # using multiAttr forces a N>A phase
@@ -528,7 +528,7 @@ class GraphEModel(nn.Module):
             losses[phase].append(loss_mean_epoch)
             print("Phase : ", phase, "\tEpoch : ", epoch_globaly, "/", tot_epochs, "\tLoss : ", loss_mean_epoch, "\tlr net: ", self.optimizatior['net'].param_groups[0]['lr'], "\tlr att: ", self.optimizatior['att'].param_groups[0]['lr'])
         outputs[phase] = node_4batch
-        self.set_embedding(encoder_out=outputs, last_epoch= phase, save=True, path=path_embedding, phases=[phase])
+        self.set_embedding(encoder_out=outputs, last_epoch= phase, save=False, path=path_embedding, phases=[phase])
 
         phase = phases_list[1]
         epochs_time = epochs[phase]
@@ -632,8 +632,8 @@ class GraphEModel(nn.Module):
                 allAttrEmbedding_out[index] = useEmbedding[i*attrLen:(i+1)*attrLen, :]
            
         outputs[phase] = node_4batch
-        self.set_embedding(encoder_out=outputs, last_epoch= phase, save=True, path=path_embedding, phases=[phase])
-        return {"output": outputs, "losses": losses, "saved_embedding": True, "allEmbedding": allAttrEmbedding_out}
+        self.set_embedding(encoder_out=outputs, last_epoch= phase, save=False, path=path_embedding, phases=[phase])
+        return {"output": outputs, "losses": losses, "saved_embedding": False, "allEmbedding": allAttrEmbedding_out}
 
     def get_embedding(self, nodes_list=None, phase='net', type_output='tensor'):
 
@@ -685,7 +685,7 @@ class GraphEModel(nn.Module):
         """
 
         for phase in phases:
-            print("Set embedding for:\t", phase)
+            # print("Set embedding for:\t", phase)
             for batch in range(len(encoder_out[last_epoch])):
                 for i in range(len(encoder_out[last_epoch][batch]['node_info']['node_index'])):
                     node_key = encoder_out[last_epoch][batch]['node_info']['node_index'][i]

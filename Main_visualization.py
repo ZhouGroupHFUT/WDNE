@@ -26,6 +26,7 @@ def main():
                   att_hadmard_coeff=5.0, net_feature_num=512, att_feature_num=512, net_losscoef_1=1,
                   net_losscoef_2=5e-2, att_semanticcoef_1=1e-3, att_squarelosscoef_2=1, net_lr=1e-2, att_lr=1e-2,
                   net_epoch=2000, att_epoch=1, phase='net')
+    
 
     '''################# Analyze and plot results #################'''
     originalLabels = dict() 
@@ -50,7 +51,7 @@ def main():
 
     useaxs = fig.add_subplot(1, 2, 1)
     wntr.graphics.plot_network(wn, ax=useaxs, node_attribute=drawAttr, node_labels=False,
-        node_size=22, link_width=0.5, add_colorbar=False, node_color=patternList)
+        node_size=22, link_width=0.5, add_colorbar=False)
 
     useaxs = fig.add_subplot(1, 2, 2)
     useaxs.scatter(embedding_PCA[:, 0], embedding_PCA[:, 1], s=13, c=patternList, cmap=cm)
