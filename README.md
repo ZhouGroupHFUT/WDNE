@@ -1,4 +1,4 @@
-The code presented in this project corresponds to the main work conducted in the research paper [Network Embedding: The Bridge Between Water Distribution Network Hydraulics and Machine Learning](https://www.sciencedirect.com/science/article/pii/S0043135424019110). If you are interested in our research, we welcome you to visit our research group website: https://group.zhouxiao.tech/.
+The code presented in this project corresponds to the main work conducted in the research paper [Network Embedding: The Bridge Between Water Distribution Network Hydraulics and Machine Learning](https://www.sciencedirect.com/science/article/pii/S0043135424019110). You can run this project by executing the `Main_visualization.py`. If you are interested in our research, we welcome you to visit our research group website: https://group.zhouxiao.tech/.
 
 Some of the code is based on the following related studies, and we would like to express our gratitude to the respective authors:
 
